@@ -1,0 +1,72 @@
+
+<hr>
+<div class="d-flex justify-content-between">
+
+  <div class="d-flex">
+      <!-- <button type="button" class="btn btn-link" (click)="openModal()" [disabled]="isRowSelected"><i class="icons8-add"></i><span>Add</span></button> -->
+      <!-- <button type="button" class="btn btn-link" (click)="openModal(selectedRow)"[disabled]="isRowNotSelected" ><i class="icons8-edit"></i><span>Edit</span></button> -->
+      <!-- <button type="button" class="btn btn-link" (click)="openDeleteConfirmationModal(selectedRow)" [disabled]="isRowNotSelected"><i class="icons8-delete"></i><span>Delete</span></button> -->
+  </div>
+
+  <div>
+      <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" [disabled]="isRowSelected" (keyup)="searchRecords()">
+  </div>
+</div>
+
+<div class="card my-3">
+  <div class="card-body d-flex">
+      <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+          <table class="table table-hover" id="table">
+              <thead class="thead-light">
+                  <tr>
+                      @for (column of columnArray; track column.fieldName){
+                        <th (click)="sortBy(column.fieldName)" container="body">
+                            {{ column.displayName }}
+                            @if(column.required){
+                                <span class="text-danger">*</span>
+                            }
+                            <i class="icons8-o-collapse-arrow text-end ms-1" *ngIf="sortedColumn === column.fieldName && isAscending"></i>
+                            <i class="icons8-o-expand-arrow text-end ms-1" *ngIf="sortedColumn === column.fieldName && !isAscending"></i>
+                        </th>
+                      }
+                  </tr>
+              </thead>
+              <tbody>
+                @for (data of filteredData | slice: (page - 1) * pageSize : page * pageSize; track $index) {
+                    <tr (click)="selectRow(data)" [class.selected-row]="isSelectedRow(data)">
+                        @for (column of columnArray; track $index) {
+                          <td>
+                            {{ data[column.fieldName] }}
+                            <!-- <button *ngIf="column.fieldName === 'actions'" (click)="viewJob(data)" class="btn btn-sm btn-primary">{{ column.buttonLabel }}</button> -->
+                            <button *ngIf="column.fieldName === 'actions'" (click)="openModal(selectedRow)" class="btn btn-sm btn-primary">{{ column.buttonLabel }}</button>
+                        </td>
+                        }
+                    </tr>
+                }
+                @empty {
+                    <span class="text-center">No data available.</span>
+                }
+            </tbody>
+          </table>
+
+
+
+
+      </div>
+            <div class="d-flex justify-content-between">
+
+                <span class="text-muted">Showing {{ ((page - 1) * pageSize) + 1}} - {{ getPageUpperLimit() }} of {{ collectionSize }}</span>
+
+                <ngb-pagination
+                [(page)]="page"
+                [pageSize]="pageSize"
+                [maxSize]="10"
+                [boundaryLinks]="true"
+                [collectionSize]="collectionSize"
+                aria-label="Pagination"
+                >
+                </ngb-pagination>
+            </div>
+
+  </div>
+</div>

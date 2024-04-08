@@ -1,0 +1,19 @@
+/* Add your preferred styling for the selected row */
+.selected-row {
+    background-color: #e3e6ef; /* Change this to your desired color */
+}
+.sdwds-modal .modal-content {
+    border: 7px solid #870B5A !important;
+}
+
+td,th, select:hover{
+    cursor: pointer;
+}
+
+.records-btn{
+    border-color: var(--neutral-surface-80)  !important;
+}
+ 
+.records-btn:disabled{
+    border-color: var(--neutral-surface-40)  !important;
+}

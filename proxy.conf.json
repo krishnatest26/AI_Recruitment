@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://recruitmentassistantai20240324125846.azurewebsites.net",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

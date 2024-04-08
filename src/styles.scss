@@ -1,0 +1,276 @@
+/* basic styling so we can
+   see what's going on */
+
+   * {
+    box-sizing: border-box;
+  }
+  
+  .head-text {
+    opacity: 0.6;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  .grid-columns {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 50px;
+    place-items: center center;
+  
+    span.head-text {
+      text-align: center;
+    }
+  }
+  
+  .flex-columns {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  
+    span.head-text {
+      text-align: center;
+    }
+  }
+  
+  code {
+    font-weight: 400;
+    color: var(--red-brand-140);
+    word-break: break-word;
+    font-family: var(--bs-font-monospace);
+  
+    &::before,
+    &::after {
+      content: '`';
+    }
+  }
+  
+  pre > code::before,
+  pre > code::after {
+    content: '';
+  }
+  
+  .fakedrawer {
+    position: relative;
+    height: 400px;
+    background-color: var(--neutral-surface-60);
+  
+    .sdwds-drawer {
+      position: absolute;
+      visibility: visible;
+  
+      .offcanvas-body {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+      }
+    }
+  }
+  
+  #pagecontent {
+    > h1 {
+      margin-top: 2.5rem;
+    }
+  
+    > h2 {
+      margin-top: 2rem;
+    }
+  
+    > h3 {
+      margin-top: 1rem;
+  
+      &.subtitle {
+        color: var(--neutral-text-80) !important;
+      }
+    }
+  
+    > h4 {
+      margin-top: 0.875rem;
+    }
+  
+    > h5 {
+      margin-top: 0.5rem;
+    }
+  }
+  
+  .bg-color-grid div.grid > div {
+    height: 3rem;
+    padding: 1rem;
+    font-weight: bold;
+  }
+  
+  .icon-tooltip {
+    --bs-tooltip-max-width: 500px;
+  }
+  
+  .badge.text-normalcase {
+    text-transform: none;
+  }
+  
+  .sd-header .navbar-brand > span {
+    font-weight: 300;
+    text-transform: capitalize;
+  }
+
+  #sdwds-grid-layout #sdwds-grid-footer {
+    display: contents;
+}
+
+#sdwds-grid-layout {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav content"
+    "footer footer";
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh; /* Ensure the layout takes at least the full viewport height */
+  position: relative; /* Add position relative to the parent container */
+}
+
+#sdwds-grid-footer {
+  grid-area: footer; /* Set the grid area for the footer */
+}
+
+.copyright_area {
+  background-color: #fff; /* Set your desired background color for the footer */
+  padding: 20px; /* Adjust the padding as needed */
+  position: fixed;
+  bottom: 0; /* Position at the bottom of the parent container */
+  width: 100%; /* Occupy the full width of the parent container */
+  font-family: Tahoma,sans-serif;
+  font-size: 14px;
+  opacity: 0.7;
+  margin-left: auto;
+}
+
+.copyright_area a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+a {
+  color: #218bc3;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+.colored-sidebar {
+  width: 12px;
+  height: 100vh;
+  background-color: #870a58;
+  position: fixed;
+  left: 0;
+  top: 45px; /* Adjust this value based on the height of your header */
+  z-index: 1; /* Ensure the sidebar is on top of other elements */
+}
+
+#sdwds-grid-layout #sdwds-grid-nav {
+  grid-area: nav;
+  overflow-x: hidden;
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Adjust as needed to position the dropdown below the parent */
+    left: 0;
+    z-index: 1000; /* Ensure the dropdown is on top of other elements */
+}
+.sd-header-profile {
+  --header-profile-z-index: 2000;
+  --min-width: 20rem;
+  --max-width: 30rem;
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  z-index: var(--header-profile-z-index);
+  padding: 0.25rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  border-color: #f1f4f8;
+  box-shadow: 0 8px 24px rgba(48, 54, 66, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* or position: absolute; depending on your layout */
+  right: 0; /* Adjust as needed to position it to the left within the page */
+  top: 45px; /* Adjust the top value to position it below the header */
+  background-color: white; /* Add a background color */
+}
+nav.navbar.navbar-toggleable-sm.justify-content-between.align-items-center {
+  background-color: #eaeced;
+}
+
+div#sdwds-grid-content {
+  background-color: #f6f6f6;
+}
+
+span#applicationname {
+  font-size: 18px;
+  font-weight: bolder;
+  font-family: var(--customized-font-title);
+}
+
+.table{
+  --bs-table-hover-bg: none;
+}
+/* global styles or component styles */
+
+.sdwds-modal .modal-content {
+  border: 2px solid #870B5A !important;
+}
+
+
+.custom-header {
+  display: flex;
+  align-items: right;
+}
+
+.custom-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  opacity: 0.5;
+  margin-bottom: -27px;
+  margin-left: 100px;
+  margin-top: -30px;
+}
+
+.modal-lg .custom-header {
+  display: flex;
+  align-items: right;
+}
+.modal-lg img.custom-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  opacity: 0.5;
+  margin-bottom: -27px;
+  margin-left: 360px;
+  margin-top: -30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(var(--bs-rows, 1), 1fr);
+  grid-template-columns: repeat(var(--bs-columns, 12), 1fr);
+  gap: var(--bs-gap, 24px);
+  height: 100%;
+  width: 404%;
+}
+span.nav-text {
+  color: #555d71;
+}
+
+span.nav-text:hover {
+  color: orangered;
+}
+.sd-sidebar .nav li.active > div > a{
+  font-weight: 900 !important;
+}
+.pcname input {
+  width: 30%;
+}

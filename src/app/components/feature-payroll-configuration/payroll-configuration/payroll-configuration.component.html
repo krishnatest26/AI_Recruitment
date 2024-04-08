@@ -1,0 +1,67 @@
+<div class="card shadow">
+    <div class="card-body p-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="javascript:void(0)">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="javascript:void(0)">Payroll Company Details</a>
+        </li>
+        <li class="breadcrumb-item active">Payroll Configuration</li>
+      </ol>
+  
+      <p>
+        <strong>Payroll Configuration</strong> are used to populate employee data for financial reporting.
+      </p>
+
+      <div class="form-group row col-md-4">
+        <label class="col-md-auto col-form-label text-end">Payroll Number: </label>
+        <div class="col-md-7">
+            <select class="form-select" style="margin-left: 13px;" aria-label="Default select example" (change)="changePayroll()" [(ngModel)]="selectedPayroll">
+                <option value="6f9619ff-8b86-d011-b42d-00c04fc964ff">981141 - PandaBots 1</option>
+                <option value="d1d191f3-f362-4779-b5de-0d884ca1a3d9">981142 - PandaBots 2</option>
+                <!-- <option value="EDA08A5F-ACED-45C5-811C-3F196B52888C">981144 - PandaBots 3</option> -->
+            </select>
+        </div>
+      </div>
+      <div class="card my-3 custom-border">
+        <div class="card-body d-flex">
+            <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+              <app-dynamic-form [form]="payrollConfigForm" [data]="filteredRecord"></app-dynamic-form>
+            </div>
+        </div>
+      </div> 
+<ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs ">
+  <br>
+	<li [ngbNavItem]="1">
+		<button ngbNavLink>Base Data</button>
+		<ng-template ngbNavContent>
+      <div class="card my-3 custom-border">
+        <div class="card-body d-flex">
+            <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+            <app-dynamic-form (onEdit)="editBaseDetails($event)" [form]="payrollConfigBaseDataForm" [data]="filteredRecord" ></app-dynamic-form> 
+          </div>
+    </div>
+  </div>
+		</ng-template>
+	</li>
+	<li [ngbNavItem]="2">
+		<button ngbNavLink><b>Cost Code </b> Format</button>
+		<ng-template ngbNavContent>
+      <div class="card my-3 custom-border">
+        <div class="card-body d-flex">
+            <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+            <app-dynamic-form [form]="costCodeformatForm" [data]="filteredRecord" ></app-dynamic-form> 
+          </div>
+    </div>
+  </div>
+		</ng-template>
+	</li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+    <div class="card-footer">
+    </div>
+  </div>
+  

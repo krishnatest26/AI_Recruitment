@@ -1,0 +1,47 @@
+// ::ng-deep .form-group {
+//   display: flex;
+//   align-items: center;
+// }
+
+// ::ng-deep .form-label {
+//   margin-right: 10px; /* Adjust the spacing between label and input as needed */
+// }
+
+// ::ng-deep .input-as-label {
+//   border: none;
+//   background-color: transparent;
+//   padding: 0;
+//   margin: 0;
+//   font-size: inherit;
+//   font-family: inherit;
+//   color: inherit;
+//   cursor: pointer;
+//   /* Additional styling */
+//   word-wrap: break-word; /* Allow words to break into new line */
+//   white-space: pre-wrap; /* Preserve whitespace and wrap text */
+// }
+
+
+
+::ng-deep .sdwds-modal {
+  --sdwds-modal-sm-max-width: 70% !important;
+  --sdwds-modal-md-max-width: 70% !important;
+  --sdwds-modal-lg-max-width: 70% !important;
+  --sdwds-modal-xl-max-width: 70% !important
+}
+
+::ng-deep .form-label {
+  /* You can adjust font size and other styles as needed */
+  font-size: 16px;
+}
+
+
+::ng-deep .custom-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 24px;
+  opacity: 0.5;
+  margin-bottom: -27px;
+  margin-left: 15px;
+  margin-top: -30px;
+}

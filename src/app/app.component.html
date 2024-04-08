@@ -1,0 +1,55 @@
+<sdwds-loadingbar enableRouting></sdwds-loadingbar>
+<sdwds-docs-route-listener></sdwds-docs-route-listener>
+
+<div id="sdwds-grid-layout">
+  <header id="sdwds-grid-header">
+    <sdwds-header [applicationName]="appName">
+      <sdwds-header-navbar>
+        <sdwds-header-navbar-item>
+          <div ngbDropdown #t="ngbDropdown">
+            <button ngbDropdownToggle class="btn btn-secondary">{{ employee.empName }}</button>
+            <div ngbDropdownMenu>
+              <sdwds-header-profile
+                empName="Krishna Nundun"
+                imageUrl=""
+                #employee
+              >
+                <sdwds-notification type="inline" level="warning" class="mb">
+                  This header profile doesn't work (for now), but it's here as an example.
+                </sdwds-notification>
+
+                <div class="divider"></div>
+                <sdwds-header-profile-select
+                  icon="icons8-o-language"
+                  [items]="languages"
+                  [selection]="selectedLanguage"
+                ></sdwds-header-profile-select>
+                <sdwds-header-profile-button icon="icons8-o-help" label="Help"></sdwds-header-profile-button>
+              </sdwds-header-profile>
+            </div>
+          </div>
+        </sdwds-header-navbar-item>
+      </sdwds-header-navbar>
+    </sdwds-header>
+  </header>
+
+  <nav id="sdwds-grid-nav">
+    <!-- <sdwds-docs-side-navigation [componentNav]="componentFeatureNavigation"></sdwds-docs-side-navigation> -->
+    <sdwds-docs-side-navigation></sdwds-docs-side-navigation>
+
+  </nav>
+
+  <div id="sdwds-grid-content" class="container-fluid sd-scrollbar">
+    <br/>
+    <router-outlet></router-outlet>
+    <footer id="sdwds-grid-footer">
+      <div class="container-fluid">
+      <div class="row">
+          <div class="copyright_area">
+                    © 2024. All Rights Reserved  | <a href="https://www.gov.uk/government/organisations/hm-revenue-customs" rel="nofollow" target="_blank">HMRC</a> | Design by <a href="https://www.sdworx.com" rel="nofollow" target="_blank">SD WORX</a>
+          </div>
+      </div>
+      </div>
+  </footer>
+  </div>
+</div>

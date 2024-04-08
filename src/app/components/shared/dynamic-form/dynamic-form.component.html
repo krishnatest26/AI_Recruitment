@@ -1,0 +1,50 @@
+@if ( form?.editFormTitle != "" || form?.addFormTitle != "") {
+<div class="modal-header">
+  <i class="{{ 'icons8-o-add-to-clipboard' }}"></i>
+  <h5 class="modal-title">
+    View Job Details
+  </h5>
+  <img [src]="img" alt="Image located at: {{ img }}" class="custom-icon" />
+  <button type="button" class="close" aria-label="Close" (click)="cancelForm($event)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<hr>
+}
+
+<div class="modal-body">
+  <form [formGroup]="dynamicFormGroup" (ngSubmit)="onSubmit($event)">
+    <ng-container>
+
+      <div class="row">
+        @for (control of form?.formControls; track control.name) {
+        <div class="col-md-6 mb-3">
+          <div class="form-group d-flex align-items-start">
+
+            <!-- Label -->
+            <label class="pconfig col-md-3" style="font-size: 16px;"><strong>{{ control.label }} :</strong></label>
+
+            <!-- Value -->
+            <label class="pconfig col-md-6 align-self-center" style="font-size: 16px;">{{ control.value }}</label>
+
+          </div>
+        </div>
+        }
+      </div>
+
+
+    </ng-container>
+    <div class="modal-footer">
+      @if ( form?.cancelBtnTitle != "") {
+      <button (click)="cancelForm($event)" class="btn btn-danger">{{ form?.cancelBtnTitle }}</button>
+      }
+
+
+      <button type="submit" class="btn btn-primary" [disabled]="!dynamicFormGroup.valid">Apply
+      </button>
+
+
+      <button type="submit" class="btn btn-primary" [disabled]="!dynamicFormGroup.valid">Text</button>
+    </div>
+  </form>
+</div>
