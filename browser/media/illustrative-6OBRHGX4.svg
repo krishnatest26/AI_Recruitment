@@ -1,0 +1,22 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_19095_34880)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M44 8H16V12H44V8ZM12 4V16H48V4H12Z" fill="#F8AD07"/>
+<path d="M20 0H24V8H20V0Z" fill="#870B58"/>
+<path d="M28 0H32V8H28V0Z" fill="#870B58"/>
+<path d="M36 0H40V8H36V0Z" fill="#870B58"/>
+<path d="M20 20H24V24H20V20Z" fill="#870B58"/>
+<path d="M28 20H32V24H28V20Z" fill="#870B58"/>
+<path d="M28 28H32V32H28V28Z" fill="#870B58"/>
+<path d="M36 20H40V24H36V20Z" fill="#870B58"/>
+<path d="M36 28H40V32H36V28Z" fill="#870B58"/>
+<path d="M12 16H16V22.625H12V16Z" fill="#7783A0"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M48 16H44V36L28 35.9375V40H44H48V36V16Z" fill="#7783A0"/>
+<path d="M14 30.75H10V38.75H16V34.75H14V30.75Z" fill="#870B58"/>
+<circle cx="12" cy="36" r="10" stroke="#7783A0" stroke-width="4"/>
+</g>
+<defs>
+<clipPath id="clip0_19095_34880">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
+</svg>

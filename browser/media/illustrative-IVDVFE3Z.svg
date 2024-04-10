@@ -1,0 +1,11 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 40.0125C32.8434 40.0125 40.0125 32.8434 40.0125 24C40.0125 15.1566 32.8434 7.98754 24 7.98754C15.1566 7.98754 7.98754 15.1566 7.98754 24C7.98754 32.8434 15.1566 40.0125 24 40.0125ZM24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z" fill="#7783A0"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M22 10H24C30.939 10 36.6954 15.0462 37.8065 21.6691C37.9339 22.4284 38 23.2073 38 24V26H34V24C34 23.4299 33.9525 22.8724 33.8616 22.3309C33.0684 17.6029 28.953 14 24 14H22V10Z" fill="#E4003A"/>
+<rect x="22" y="34" width="4" height="4" fill="#E4003A"/>
+<rect x="22" y="18" width="4" height="8" fill="#870B58"/>
+<path d="M22 22V26H38V24C38 23.3644 37.9575 22.7377 37.875 22.1229V22L22 22Z" fill="#870B58"/>
+<rect x="10" y="26" width="4" height="4" transform="rotate(-90 10 26)" fill="#E4003A"/>
+<rect x="29.6572" y="32.4863" width="4" height="4" transform="rotate(-45 29.6572 32.4863)" fill="#F8AD07"/>
+<rect x="12.6865" y="15.5156" width="4" height="4" transform="rotate(-45 12.6865 15.5156)" fill="#F8AD07"/>
+<rect x="15.5146" y="29.6562" width="4" height="4" transform="rotate(45 15.5146 29.6562)" fill="#F8AD07"/>
+</svg>

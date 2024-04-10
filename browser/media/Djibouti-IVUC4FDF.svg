@@ -1,0 +1,19 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_769_8866)">
+<path d="M0 20C0 8.95431 8.95431 0 20 0C31.0457 0 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.95431 40 0 31.0457 0 20Z" fill="#E94E0F"/>
+<g clip-path="url(#clip1_769_8866)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M-0.00830078 0H60.1517V40.1067H-0.00830078V0Z" fill="#00CC00"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M-0.00830078 0H60.1517V20.0533H-0.00830078V0Z" fill="#6699FF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M-0.00830078 0L29.9699 20.0298L-0.00830078 40.0283V0Z" fill="#FFFEFE"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.5092 22.8733L10.0966 21.15L7.69174 22.9047L8.58474 20.0533L6.18774 18.2908L9.15658 18.2673L10.0731 15.4238L11.0131 18.2595H13.9819L11.5927 20.0377L12.5092 22.889V22.8733Z" fill="#FF0000"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_769_8866">
+<path d="M0 20C0 8.95431 8.95431 0 20 0C31.0457 0 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.95431 40 0 31.0457 0 20Z" fill="white"/>
+</clipPath>
+<clipPath id="clip1_769_8866">
+<rect width="53.3333" height="40" fill="white"/>
+</clipPath>
+</defs>
+</svg>
