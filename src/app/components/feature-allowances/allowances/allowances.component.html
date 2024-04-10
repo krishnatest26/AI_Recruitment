@@ -1,10 +1,29 @@
 <div class="empty-state empty-state-lg">
-    <i class="empty-state-image-functionality-under-construction-2"></i>
-    <div class="empty-state-content">
-      <h4>Coming soon...</h4>
-      <!-- <span
-        >We try to resolve this as soon as possible. Contact <a href="mailto:support@sd.be"></a> if this
-        problem occurs more often.</span
-      > -->
-    </div>
+  <div class="chart-container">
+    <ngx-charts-bar-vertical
+      class="chart"
+      [view]="[1000,400]"
+      [results]="dataset"
+      [xAxisLabel]="'x-axis'"
+      [legendTitle]="'legend'"
+      [yAxisLabel]="'y-axis'"
+      [legend]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      [gradient]="true">
+    </ngx-charts-bar-vertical>
   </div>
+  <div class="chart-container">
+    <ngx-charts-pie-chart
+      class="chart"
+      [results]="data"
+      [legend]="true"
+      [legendPosition]="legendPosition"
+      [labels]="true"
+      [view]="[700, 400]"
+      [gradient]="true">
+    </ngx-charts-pie-chart>
+  </div>
+</div>

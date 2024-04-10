@@ -38,13 +38,17 @@ export class JobComponent {
 
   firstName: string = '';
   lastName: string = '';
+  mobile: string = '';
   phone: string = '';
   email: string = '';
   address: string = '';
   cvFile: File | null = null;
+  loading: boolean = false;
 
   candidate: Candidate = new Candidate();
   pdfFile!: File;
+
+  resumeSummary: any;
 
   constructor(private activeModal: NgbActiveModal, private addService: AddService, private formService: FormService,
     private apiService: ApiService, private sdwdsToastService: SdwdsToastService,
@@ -179,16 +183,25 @@ export class JobComponent {
     formData.append('candidate.Candidate_Mobile', '58205185');
     formData.append('candidate.Candidate_Address', candidateData.Candidate_Address);
 
+    formData.append('candidate.CertificatesList', candidateData.CertificatesList);
+    formData.append('candidate.DegreesList', candidateData.DegreesList);
+    formData.append('candidate.ExperienceList', candidateData.ExperienceList);
+    formData.append('candidate.ResponsibilitiesList', candidateData.ResponsibilitiesList);
+    formData.append('candidate.SoftSkillsList', candidateData.SoftSkillsList);
+    formData.append('candidate.TechnicalSkillsList', candidateData.TechnicalSkillsList);
+
+
     if (this.cvFile) {
       formData.append('PdfFile', this.cvFile, this.cvFile.name);
     } else {
       console.log('No CV file selected');
     }
-    return this.http.post<any>('https://recruitmentassistantai20240324125846.azurewebsites.net/api/Candidate/RegisterCandidate', formData);
+    return this.http.post<any>('https://localhost:7063/api/Candidate/RegisterCandidate', formData);
   }
 
 
   submitForm() {
+    this.loading = true; // Show loading spinner
     // Create a new Candidate object and populate its properties
     const candidateData: Candidate = {
       Candidate_FirstName: this.firstName,
@@ -197,18 +210,30 @@ export class JobComponent {
       Candidate_Phone: this.phone || '', // Handle null or undefined
       Candidate_Mobile: '58205185',
       Candidate_Address: this.address,
-      Candidate_ResumePath: ''
+      Candidate_ResumePath: '',
+
+      CertificatesList: '',
+      DegreesList: '',
+      ExperienceList: '',
+      ResponsibilitiesList: '',
+      SoftSkillsList: '',
+      TechnicalSkillsList: '',
+
     };
 
     // Call registerCandidate method with candidateData and pdfFile
     this.registerCandidate(candidateData, this.pdfFile).subscribe(
       response => {
+        this.loading = false;
         console.log('Candidate registered successfully:', response);
         this.isCandidateRegistered = true;
         // Show success toast
+
+        this.resumeSummary = response;
         this._sdwdsToastService.showSuccess('Candidate registered successfully!', 'Success');
       },
       error => {
+        this.loading = false;
         console.error('An error occurred while registering candidate:', error);
         // Show error toast
         this.toastr.error('An error occurred while submitting the form.', 'Error');
@@ -277,4 +302,19 @@ export class Candidate {
   Candidate_Mobile!: string;
   Candidate_Address!: string;
   Candidate_ResumePath?: string;
+
+  CertificatesList!: string;
+  DegreesList!: string;
+  ExperienceList!: string;
+  ResponsibilitiesList!: string;
+  SoftSkillsList!: string;
+  TechnicalSkillsList!: string;
+
+}
+
+interface ResumeSummary {
+  candidate_id: number;
+  candidate_FirstName: string;
+  candidate_LastName: string;
+  // Define other properties as needed
 }

@@ -1,3 +1,15 @@
+<div class="loading-overlay" *ngIf="loading">
+  <div class="grid-columns">
+    <div class="spinner spinner-lg shake">
+      <div class="dot-primary"></div>
+      <div class="dot-accent"></div>
+      <div class="dot-red-brand"></div>
+      <div class="dot-yellow-brand"></div>
+    </div>
+  </div>
+</div>
+
+
 <div class="card shadow">
   <div class="card-body p-4">
     <ol class="breadcrumb">
@@ -32,116 +44,115 @@
 
 <ng-template #content let-offcanvas>
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">Personal Information</h5>
+    <!-- <h5 class="offcanvas-title">Personal Information</h5> -->
     <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
   </div>
   <div class="offcanvas-body">
 
-
     <div class="offcanvas-body">
 
 
-
       <form *ngIf="!isCandidateRegistered" (ngSubmit)="submitForm()" #jobForm="ngForm">
-        <div class="row">
-          <!-- First Name -->
-          <div class="form-group col-sm-6">
-            <input type="text" class="form-control form-control-lg custom-input" id="firstName" placeholder="First Name"
-              [(ngModel)]="firstName" name="firstName" required>
-            <div class="invalid-feedback">Please provide your first name.</div>
-          </div>
 
-          <!-- Last Name -->
-          <div class="form-group col-sm-6">
-            <input type="text" class="form-control form-control-lg custom-input" id="lastName" placeholder="Last Name"
-              [(ngModel)]="lastName" name="lastName" required>
-            <div class="invalid-feedback">Please provide your last name.</div>
-          </div>
-        </div>
-
-        <div class="row">
-          <!-- Phone -->
-          <div class="form-group col-sm-6">
-            <input type="tel" class="form-control form-control-lg custom-input" id="phone" placeholder="Phone Number"
-              [(ngModel)]="phone" name="phone" required>
-            <div class="invalid-feedback">Please provide your phone number.</div>
-          </div>
-
-          <!-- Address -->
-          <div class="form-group col-sm-6">
-            <input type="address" class="form-control form-control-lg custom-input" id="address" placeholder="Address"
-              [(ngModel)]="address" name="address" required>
-            <div class="invalid-feedback">Please provide a valid address.</div>
-          </div>
-
-        <!-- Email -->
-        <div class="form-group col-sm-12">
-          <input type="email" class="form-control form-control-lg custom-input" id="email" placeholder="Email Address"
-            [(ngModel)]="email" name="email" required>
-          <div class="invalid-feedback">Please provide a valid email address.</div>
-        </div>
-      </div>
-
-        <!-- File Uploader -->
-        <div class="row">
-          <div class="form-group col-sm-12">
-            <div class="file-upload-dropbox" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
-              <input type="file" class="form-control-file" id="cv" aria-describedby="cvUpload" (change)="handleFileInput($event)" required>
-              <label class="custom-file-label" for="cv">Drag & drop Resume here or click to browse</label>
-            </div>
-            <small id="fileUploadHelp" class="form-text text-muted">Maximum file size: 5MB</small>
-            <div class="invalid-feedback">Please upload your CV file.</div>
-          </div>
-        </div>
-
-        <br>
-
-        <!-- Submit Button -->
-        <div class="row">
-          <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary col-sm-12">Submit</button>
-          </div>
-        </div>
-
-<!--
         <div class="card shadow">
           <div class="card-header">
-            <h5>Work Experience</h5>
-            <div>
-              <button type="button" class="btn btn-link"><i class="icons8-browser-history"></i><span>History</span></button>
+            <h5>Upload Resume</h5>
+
+            <!-- <div>
+              <button type="button" class="btn btn-link"><i
+                  class="icons8-browser-history"></i><span>History</span></button>
               <button type="button" class="btn btn-link"><i class="icons8-add"></i><span>Add</span></button>
               <button type="button" class="btn btn-link"><i class="icons8-edit"></i><span>Edit</span></button>
-            </div>
+            </div> -->
+
           </div>
           <div class="card-body">
             <div class="row mb">
-              <div class="col">
-                <label for="inputJobTitle" class="form-label">Job title</label>
-                <input type="text" class="form-control" id="inputJobTitle" placeholder="UI/UX Designer" />
-              </div>
-              <div class="col">
-                <label for="selectJobType" class="form-label">Job type</label>
-                <select id="selectJobType" class="form-control custom-select">
-                  <option selected>Agile coach</option>
-                  <option>Designer</option>
-                  <option>Developer</option>
-                  <option>Product owner</option>
-                </select>
+
+              <div class="row">
+                <div class="col">
+                  <label for="inputJobTitle" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="firstName" placeholder="First Name"
+                    [(ngModel)]="firstName" name="firstName" required>
+                </div>
+
+
+                <div class="col">
+                  <label for="inputJobTitle" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="lastName" placeholder="Last Name" [(ngModel)]="lastName"
+                    name="lastName" required>
+                </div>
               </div>
             </div>
+
+            <div class="row mb">
+              <div class="row">
+                <div class="col">
+                  <label for="inputJobTitle" class="form-label">Mobile</label>
+                  <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" [(ngModel)]="mobile"
+                    name="mobile" required>
+                </div>
+
+
+                <div class="col">
+                  <label for="inputJobTitle" class="form-label">Phone</label>
+                  <input type="tel" class="form-control" id="phone" placeholder="Phone Number" [(ngModel)]="phone"
+                    name="phone" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb">
+              <div class="row">
+                <div class="col">
+                  <label for="inputJobTitle" class="form-label">Address</label>
+                  <input type="address" class="form-control" id="address" placeholder="Address" [(ngModel)]="address"
+                    name="address" required>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row mb">
+              <div class="row">
+                <div class="col">
+                  <label for="inputJobTitle" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="email" placeholder="Email Address" [(ngModel)]="email"
+                    name="email" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- File Uploader -->
+            <br>
+            <div class="row mb">
+              <div class="row">
+                <div class="col">
+                  <!-- <label for="inputJobTitle" class="form-label">Upload Resume </label> -->
+                  <div class="form-group col-sm-12">
+                    <div class="file-upload-dropbox" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+                      (drop)="onDrop($event)">
+                      <input type="file" class="form-control-file" id="cv" aria-describedby="cvUpload"
+                        (change)="handleFileInput($event)" required>
+                      <label class="custom-file-label" for="cv">Drag & drop Resume here or click to browse</label>
+                    </div>
+                    <small id="fileUploadHelp" class="form-text text-muted">Maximum file size: 5MB</small>
+                    <div class="invalid-feedback">Please upload your CV file.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
             <div class="row">
-              <div class="col">
-                <label for="inputJobLocation" class="form-label">Job Location</label>
-                <select id="inputJobLocation" class="form-control custom-select">
-                  <option selected>Antwerp</option>
-                  <option>Brussels</option>
-                  <option>...</option>
-                </select>
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary col-sm-12">Submit</button>
               </div>
             </div>
+
+
           </div>
         </div>
- -->
 
 
       </form>
@@ -149,43 +160,74 @@
 
 
       <!-- Dummy data form -->
-<form *ngIf="isCandidateRegistered">
+      <form *ngIf="isCandidateRegistered">
 
-  <div class="resume-container">
-    <h2 class="resume-heading">Candidate Resume</h2>
-    <div class="resume-details">
-      <div class="resume-item">
-        <label class="resume-label">Name:</label>
-        <span class="resume-value">John Doe</span>
-      </div>
-      <div class="resume-item">
-        <label class="resume-label">Address:</label>
-        <span class="resume-value">123 Main St, City, Country</span>
-      </div>
-      <div class="resume-item">
-        <label class="resume-label">Mobile Number:</label>
-        <span class="resume-value">+1234567890</span>
-      </div>
-      <div class="resume-item">
-        <label class="resume-label">Experience:</label>
-        <div class="resume-value">
-          <div class="experience-details">
-            <div><strong>Position:</strong> Lead Developer</div>
-            <div><strong>Company:</strong> XYZ Corporation</div>
-            <div><strong>Duration:</strong> 3 years</div>
-            <div><strong>Responsibilities:</strong><br>Responsible for leading development teams, architecting solutions, and ensuring project delivery.</div>
-            <div><strong>Achievements:</strong><br>Led the successful completion of several high-profile projects resulting in increased client satisfaction.</div>
+        <div class="resume-container" *ngIf="resumeSummary">
+          <h2 class="resume-heading">Candidate Resume</h2>
+          <div class="resume-details">
+            <div class="resume-item">
+              <label class="resume-label">Name:</label>
+              <span class="resume-value">{{ resumeSummary?.candidate_FirstName }} {{ resumeSummary?.candidate_LastName }}</span>
+            </div>
+            <div class="resume-item">
+              <label class="resume-label">Email:</label>
+              <span class="resume-value">{{ resumeSummary?.candidate_Email }}</span>
+            </div>
+            <div class="resume-item">
+              <label class="resume-label">Phone:</label>
+              <span class="resume-value">{{ resumeSummary?.candidate_Phone }}</span>
+            </div>
+            <div class="resume-item">
+              <label class="resume-label">Address:</label>
+              <span class="resume-value">{{ resumeSummary?.candidate_Address }}</span>
+            </div>
+            <div class="resume-item">
+              <label class="resume-label">Experience:</label>
+              <ul class="resume-value">
+                <li *ngFor="let experience of resumeSummary?.experience">
+                  <strong>{{ experience.experience_Title }}</strong> - {{ experience.experience_Description }}
+                </li>
+              </ul>
+            </div>
+            <div class="resume-item">
+              <label class="resume-label">Responsibilities:</label>
+              <ul class="resume-value">
+                <li *ngFor="let responsibility of resumeSummary?.responsibility">
+                  {{ responsibility.responsibility_Description }}
+                </li>
+              </ul>
+            </div>
+            <div class="resume-item">
+              <label class="resume-label">Technical Skills:</label>
+              <ul class="resume-value">
+                <li *ngFor="let skill of resumeSummary?.technicalSkill">
+                  {{ skill.skill_Name }}
+                </li>
+              </ul>
+            </div>
+            <div class="resume-item">
+              <label class="resume-label">Soft Skills:</label>
+              <ul class="resume-value">
+                <li *ngFor="let skill of resumeSummary?.softSkill">
+                  {{ skill.skill_Name }}
+                </li>
+              </ul>
+            </div>
+            <div class="resume-item">
+              <label class="resume-label">Education:</label>
+              <ul class="resume-value">
+                <li *ngFor="let degree of resumeSummary?.degree">
+                  {{ degree.degree_Name }}
+                </li>
+              </ul>
+            </div>
+            <!-- Add more sections as needed -->
           </div>
         </div>
-      </div>
-      <div class="resume-item">
-        <label class="resume-label">Skills:</label>
-        <span class="resume-value">Angular, TypeScript, HTML, CSS</span>
-      </div>
-    </div>
-  </div>
 
-</form>
+
+
+      </form>
 
 
 

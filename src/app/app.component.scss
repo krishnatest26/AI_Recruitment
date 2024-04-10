@@ -1,5 +1,50 @@
 .table {
-    --sdwds-table-head-color: var(--neutral-surface);
-  }
+  --sdwds-table-head-color: var(--neutral-surface);
+}
 
-  
+::ng-deep .illustrative-house-2{
+  width: 24px;
+  height: 24px;
+}
+
+::ng-deep .illustrative-payroll-1 {
+  width: 24px;
+  height: 24px;
+}
+
+::ng-deep .illustrative-tasks {
+  width: 24px;
+  height: 24px;
+}
+
+::ng-deep .icons8-o-library {
+  width: 24px;
+  height: 24px;
+}
+
+::ng-deep .illustrative-settings {
+  width: 24px;
+  height: 24px;
+}
+
+::ng-deep .illustrative-document {
+  width: 24px;
+  height: 24px;
+}
+
+
+::ng-deep body.folded .sd-sidebar:not(.flat) .nav li a .nav-text, body.folded .sd-sidebar:not(.flat) .nav li .alert .alert-link .nav-text, body.folded .sd-sidebar:not(.flat) .nav li .toast .alert-link .nav-text, body.folded .sd-sidebar:not(.flat) .nav li .banner .alert-link .nav-text, .alert body.folded .sd-sidebar:not(.flat) .nav li .alert-link .nav-text, .toast body.folded .sd-sidebar:not(.flat) .nav li .alert-link .nav-text, .banner body.folded .sd-sidebar:not(.flat) .nav li .alert-link .nav-text {
+  //font-size: .6875rem;
+  font-size: 11px;
+  margin-top: -18px !important;
+}
+
+// :root {
+//   --body-class: folded;
+// }
+
+// ::ng-deep li.d-none.d-md-block {
+//   display: none !important;
+// }
+
+

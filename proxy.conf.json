@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://recruitmentassistantai20240324125846.azurewebsites.net",
+    "target": "https://localhost:7063/",
     "secure": false,
     "changeOrigin": true
   }

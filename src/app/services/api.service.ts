@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 
 export class ApiService {
 
-  baseUrl = 'https://recruitmentassistantai20240324125846.azurewebsites.net/';
+  baseUrl = 'https://localhost:7063/';
 
-  private getAllJobUrl = 'https://recruitmentassistantai20240324125846.azurewebsites.net/api/Job/GetAllOpenJobs';
+  private getAllJobUrl = 'https://localhost:7063/api/Job/GetAllOpenJobs';
 
 
   http = inject(HttpClient);
