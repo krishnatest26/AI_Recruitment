@@ -128,7 +128,6 @@
             <div class="row mb">
               <div class="row">
                 <div class="col">
-                  <!-- <label for="inputJobTitle" class="form-label">Upload Resume </label> -->
                   <div class="form-group col-sm-12">
                     <div class="file-upload-dropbox" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
                       (drop)="onDrop($event)">
@@ -141,7 +140,14 @@
                   </div>
                 </div>
               </div>
+              <!-- Display uploaded file name -->
+              <div class="row">
+                <div class="col">
+                  <p class="fileName">{{ uploadedFileName }}</p>
+                </div>
+              </div>
             </div>
+
 
             <!-- Submit Button -->
             <div class="row">
@@ -167,7 +173,8 @@
           <div class="resume-details">
             <div class="resume-item">
               <label class="resume-label">Name:</label>
-              <span class="resume-value">{{ resumeSummary?.candidate_FirstName }} {{ resumeSummary?.candidate_LastName }}</span>
+              <span class="resume-value">{{ resumeSummary?.candidate_FirstName }} {{ resumeSummary?.candidate_LastName
+                }}</span>
             </div>
             <div class="resume-item">
               <label class="resume-label">Email:</label>
@@ -238,3 +245,4 @@
 
   </div>
 </ng-template>
+

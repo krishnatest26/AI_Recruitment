@@ -7,6 +7,7 @@ import { IForm, IOptions } from '../../../interface/form.interface';
 import { NgbModalDeleteComponent } from '../ngb-modal/ngb-modal-delete/ngb-modal-delete.component';
 import { CommonModule } from '@angular/common';
 import { AddService } from '../../../services/add.service';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-ngb-table',
@@ -18,7 +19,7 @@ import { AddService } from '../../../services/add.service';
 })
 export class NgbTableComponent {
 
-  constructor(private addService: AddService) {}
+  constructor(private addService: AddService, private dataService: DataService) {}
 
   searchText: string = "";
   filteredData: any[] = [];
@@ -66,7 +67,11 @@ selectRow(rowData: any) {
   this.selectedRow = rowData;
   this.isRowSelected = true;
   this.isRowNotSelected = false;
-  console.log(rowData);
+  // console.log(rowData);
+  console.log('rowData', rowData.job_id);
+
+  this.dataService.setJobId(rowData.job_id);
+
 }
 
 ngOnInit(): void{

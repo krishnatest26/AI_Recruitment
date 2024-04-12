@@ -36,5 +36,11 @@ export class ApiService {
     return this.http.get<any[]>(this.getAllJobUrl);
   }
 
+  applyForJob(candidateId: number, jobId: number): Observable<any> {
+
+    const url = `${this.baseUrl}api/Job/ApplyForJob?candidateId=${candidateId}&jobId=${jobId}`;
+    return this.http.post(url, {});
+  }
+
 }
 export type endpointType = 'departmentList' | 'deleteDepartment' | 'controlCalendarList' | 'deleteControlCalendar' | 'baseDetailsList';

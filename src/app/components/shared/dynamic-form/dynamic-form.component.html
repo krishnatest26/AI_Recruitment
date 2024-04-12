@@ -1,3 +1,14 @@
+<div class="loading-overlay" *ngIf="loading">
+  <div class="grid-columns">
+    <div class="spinner spinner-lg shake">
+      <div class="dot-primary"></div>
+      <div class="dot-accent"></div>
+      <div class="dot-red-brand"></div>
+      <div class="dot-yellow-brand"></div>
+    </div>
+  </div>
+</div>
+
 @if ( form?.editFormTitle != "" || form?.addFormTitle != "") {
 <div class="modal-header">
   <i class="{{ 'icons8-o-add-to-clipboard' }}"></i>
@@ -40,11 +51,9 @@
       }
 
 
-      <button type="submit" class="btn btn-primary" [disabled]="!dynamicFormGroup.valid">Apply
+      <button type="submit" class="btn btn-primary" (click)="applyJob()" [disabled]="!dynamicFormGroup.valid">Apply
       </button>
 
-
-      <button type="submit" class="btn btn-primary" [disabled]="!dynamicFormGroup.valid">Text</button>
-    </div>
+ </div>
   </form>
 </div>

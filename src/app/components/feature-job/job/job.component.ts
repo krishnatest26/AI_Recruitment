@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-job',
@@ -50,10 +51,13 @@ export class JobComponent {
 
   resumeSummary: any;
 
+  uploadedFileName: string = '';
+
   constructor(private activeModal: NgbActiveModal, private addService: AddService, private formService: FormService,
     private apiService: ApiService, private sdwdsToastService: SdwdsToastService,
     private sdwdsDrawerService: SdwdsDrawerService, config: NgbOffcanvasConfig,
-    private offcanvasService: NgbOffcanvas, private http: HttpClient, private toastr: ToastrService) {// customize default values of offcanvas used by this component tree
+    private offcanvasService: NgbOffcanvas, private http: HttpClient, private toastr: ToastrService,
+    private dataService: DataService) {// customize default values of offcanvas used by this component tree
     config.position = 'end';
     config.backdropClass = 'bg-info';
     config.keyboard = false;
@@ -68,10 +72,11 @@ export class JobComponent {
   yesLbl: string = 'Yes';
   noLbl: string = 'No';
   isCandidateRegistered: boolean = false;
-  // api = inject(ApiService);
-  // _sdwsToastService = inject(SdwdsToastService);
 
-  //columnArray: any[] = [];
+  candidateId: string = '';
+  jobId: string = '';
+
+
   api = new ApiService(); // Correct the instantiation
   _sdwsToastService = new SdwdsToastService(); // Correct the instantiation
 
@@ -230,6 +235,11 @@ export class JobComponent {
         // Show success toast
 
         this.resumeSummary = response;
+
+        console.log('candidate id', this.resumeSummary.candidate_id)
+
+        this.dataService.setCandidateId(this.resumeSummary.candidate_id);
+
         this._sdwdsToastService.showSuccess('Candidate registered successfully!', 'Success');
       },
       error => {
@@ -248,6 +258,7 @@ export class JobComponent {
       // Get the first file from the list
       const file = target.files[0];
       console.log('File selected:', file.name);
+      this.uploadedFileName = file.name;
 
       // Assign the selected file to cvFile property
       this.cvFile = file;
