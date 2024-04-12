@@ -150,22 +150,29 @@ export class DynamicFormComponent implements OnInit {
   }
 
   applyJob() {
-    this.loading = true; // Show loading spinner
+
     const candidateId = this.dataService.getCandidateId();
     const jobId = this.dataService.getJobId();
 
-    this.apiService.applyForJob(candidateId, jobId).subscribe(
-      response => {
-        this.loading = false;
-        this._sdwdsToastService.showSuccess('Job Application Successful!', 'Success');
-        console.log('Job applied successfully:', response);
-      },
-      error => {
-        this.loading = false;
-        this._sdwdsToastService.showError('Error Occured!', 'Error');
-        console.error('An error occurred while applying for the job:', error);
-      }
-    );
+    if(candidateId == 0 || candidateId  == undefined){
+      this._sdwdsToastService.showError('Upload your resume before applying a job!', 'Warning');
+    } else{
+      this.loading = true; // Show loading spinner
+      this.apiService.applyForJob(candidateId, jobId).subscribe(
+        response => {
+          this.loading = false;
+          this._sdwdsToastService.showSuccess('Job Application Successful!', 'Success');
+          console.log('Job applied successfully:', response);
+        },
+        error => {
+          this.loading = false;
+          this._sdwdsToastService.showError('Error Occured!', 'Error');
+          console.error('An error occurred while applying for the job:', error);
+        }
+      );
+    }
+
+
   }
   isRequiredValidatorPresent(control: any): boolean {
     return control.validators && control.validators.some((validator: { validatorName: string; }) => validator.validatorName === 'required');

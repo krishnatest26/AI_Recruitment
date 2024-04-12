@@ -1,30 +1,36 @@
-<p>Test</p>
-<div class="empty-state empty-state-lg">
-  <div class="chart-container">
+<div class="container">
+  <div class="left-panel">
+    <p>Test</p>
     <ngx-charts-bar-vertical
       class="chart"
-      [view]="[1000,400]"
-      [results]="dataset"
-      [xAxisLabel]="'x-axis'"
+      [view]="[500,300]"
+      [results]="openJobCountByLocationData"
+      [xAxisLabel]="'Open Job Count By Location'"
       [legendTitle]="'legend'"
-      [yAxisLabel]="'y-axis'"
+      [yAxisLabel]="'Number of Open Job'"
       [legend]="true"
       [showXAxisLabel]="true"
       [showYAxisLabel]="true"
       [xAxis]="true"
       [yAxis]="true"
-      [gradient]="true">
+      [gradient]="true"
+      [showDataLabel]="true"
+      [legendTitle]="'Country'"
+      [gradient]="true"
+    >
     </ngx-charts-bar-vertical>
   </div>
-  <div class="chart-container">
+  <div class="right-panel">
     <ngx-charts-pie-chart
       class="chart"
       [results]="data"
       [legend]="true"
       [legendPosition]="legendPosition"
       [labels]="true"
-      [view]="[700, 400]"
+      [view]="[500, 300]"
       [gradient]="true">
     </ngx-charts-pie-chart>
   </div>
+
+
 </div>
