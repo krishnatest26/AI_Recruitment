@@ -1,0 +1,26 @@
+<div class="card shadow">
+  <div class="card-body p-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0)">Home</a>
+      </li>
+      <li class="breadcrumb-item active">View Jobs</li>
+    </ol>
+
+
+    <p>
+      <strong>Welcome to the Job Matching Portal!</strong>
+      <br>
+      Explore a diverse range of job opportunities and connect with talented candidates.
+      Our advanced algorithm ensures precise matching based on candidate skills and job requirements.
+      Review suitability percentages and find the ideal candidates effortlessly.
+      Start browsing now to streamline your recruitment process!"
+    </p>
+
+
+
+    <app-ngb-table [tableData]="recruiterJobList" [columnArray]="columnArray" [form]="departmentForm"></app-ngb-table>
+
+    <div class="card-footer"></div>
+  </div>
+</div>

@@ -36,6 +36,11 @@ export class ApiService {
     return this.http.get<any[]>(this.getAllJobUrl);
   }
 
+  getAllJob(): Observable<any[]> {
+    const url = `${this.baseUrl}api/Job/GetAllJobs`;
+    return this.http.get<any[]>(url);
+  }
+
   applyForJob(candidateId: number, jobId: number): Observable<any> {
 
     const url = `${this.baseUrl}api/Job/ApplyForJob?candidateId=${candidateId}&jobId=${jobId}`;
