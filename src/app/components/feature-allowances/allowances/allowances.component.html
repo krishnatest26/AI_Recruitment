@@ -1,36 +1,71 @@
 <div class="container">
-  <div class="left-panel">
-    <p>Test</p>
-    <ngx-charts-bar-vertical
-      class="chart"
-      [view]="[500,300]"
-      [results]="openJobCountByLocationData"
-      [xAxisLabel]="'Open Job Count By Location'"
-      [legendTitle]="'legend'"
-      [yAxisLabel]="'Number of Open Job'"
-      [legend]="true"
-      [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      [xAxis]="true"
-      [yAxis]="true"
-      [gradient]="true"
-      [showDataLabel]="true"
-      [legendTitle]="'Country'"
-      [gradient]="true"
-    >
-    </ngx-charts-bar-vertical>
-  </div>
-  <div class="right-panel">
-    <ngx-charts-pie-chart
-      class="chart"
-      [results]="data"
-      [legend]="true"
-      [legendPosition]="legendPosition"
-      [labels]="true"
-      [view]="[500, 300]"
-      [gradient]="true">
-    </ngx-charts-pie-chart>
+
+
+  <div class="number-card-container">
+    <ngx-charts-number-card
+      [results]="numberCard"
+      [innerPadding]="5"
+      [textColor]="'#b65a78'"
+      [valueFormatting]="valueFormatting"
+      [labelFormatting]="labelFormatting"
+      [designatedTotal]="100"
+    ></ngx-charts-number-card>
   </div>
 
 
+  <br><br>
+  <!-- Bar Chart and Pie Chart below -->
+  <div class="chart-container">
+    <div class="left-panel">
+      <ngx-charts-bar-vertical
+        class="chart"
+        [view]="[550,300]"
+        [results]="openJobCountByLocationData"
+        [xAxisLabel]="'Locations'"
+        [legendTitle]="'legend'"
+        [yAxisLabel]="'Number of Open Jobs'"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [gradient]="true"
+        [showDataLabel]="true"
+        [legendTitle]="'Country'"
+        [gradient]="true"
+      ></ngx-charts-bar-vertical>
+    </div>
+
+
+    <div class="right-panel">
+      <ngx-charts-pie-chart
+        class="chart"
+        [results]="pieChartData"
+        [legend]="true"
+        [legendPosition]="legendPosition"
+        [labels]="true"
+        [view]="[560, 300]"
+        [gradient]="true">
+      </ngx-charts-pie-chart>
+    </div>
+
+
+  </div>
 </div>
+
+
+<br><br>
+<div class="container">
+  <ngx-charts-box-chart
+    [results]="boxChartData"
+    [legend]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    xAxisLabel="X Axis Label"
+    yAxisLabel="Y Axis Label"
+  ></ngx-charts-box-chart>
+</div>
+
+<br><br><br><br>

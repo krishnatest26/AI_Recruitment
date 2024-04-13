@@ -1,8 +1,40 @@
+// .container {
+//   display: flex;
+// }
+
+// .left-panel,
+// .right-panel {
+//   width: 50%;
+// }
+
+
 .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-container {
   display: flex;
 }
 
 .left-panel,
 .right-panel {
-  width: 50%;
+  flex: 1;
+}
+
+.chart {
+  width: 100%;
+  height: 300px; /* Set a height for the charts */
+}
+
+.number-card-container.card {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .ngx-charts-outer {
+  background-color: #ffffff;
 }
