@@ -48,8 +48,8 @@
                 <ng-container *ngFor="let column of columnArray">
                   <ng-container *ngIf="column.fieldName === 'actions'; else showData">
                     <td>
-                      <button class="btn btn-sm btn-success"  (click)="acceptApplication(data)">Accept</button> &nbsp;&nbsp;
-                      <button  class="btn btn-sm btn-danger">Reject</button>
+                      <button  class="btn btn-sm btn-primary" (click)="acceptApplication(data)">Accept / Reject</button> &nbsp;&nbsp;
+
                     </td>
                   </ng-container>
                   <ng-template #showData>
@@ -77,3 +77,5 @@
     <div class="card-footer"></div>
   </div>
 </div>
+
+

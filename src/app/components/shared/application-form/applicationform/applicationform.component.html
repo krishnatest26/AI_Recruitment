@@ -1,0 +1,65 @@
+<div class="loading-overlay" *ngIf="loading">
+  <div class="grid-columns">
+    <div class="spinner spinner-lg shake">
+      <div class="dot-primary"></div>
+      <div class="dot-accent"></div>
+      <div class="dot-red-brand"></div>
+      <div class="dot-yellow-brand"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-header">
+  <i class="{{ 'icons8-o-add-to-clipboard' }}"></i>
+  <h5 class="modal-title">
+    Job Application
+  </h5>
+  <img [src]="img" alt="Image located at: {{ img }}" class="custom-icon" />
+  <button type="button" class="close" aria-label="Close" (click)="cancelForm($event)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<hr>
+
+<div class="modal-body">
+  <form (ngSubmit)="onSubmit($event)">
+    <ng-container>
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <p>{{ this.firstName }} {{ this.lastName }}</p> <!-- Dummy name goes here -->
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Job Title:</label>
+            <p>{{ this.jobTitle }}</p> <!-- Dummy name goes here -->
+          </div>
+        </div>
+
+        <br/>
+
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="additionalComments">Additional Comments:</label>
+            <textarea class="form-control" placeholder="Add Comment" id="theAacceptanceReason" name="theAacceptanceReason" [(ngModel)]="theAacceptanceReason" [ngModelOptions]="{standalone: true}"
+              required></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add more sections here if needed -->
+
+      <div class="modal-footer">
+        <!-- <button (click)="cancelForm($event)" class="btn btn-danger">Cancel</button> -->
+        <button type="submit" (click)="acceptApplication($event)" class="btn btn-success">Accept</button>
+        <button type="submit" (click)="rejectApplication($event)" class="btn btn-danger">Reject</button>
+      </div>
+    </ng-container>
+  </form>
+</div>
+

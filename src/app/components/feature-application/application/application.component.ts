@@ -17,6 +17,7 @@ import { IOptions } from '../../../interface/form.interface';
 import { CommonModule } from '@angular/common';
 import { DynamicFormComponent } from '../../shared/dynamic-form/dynamic-form.component';
 import { JobformComponent } from '../../shared/job-form/jobform/jobform.component';
+import { ApplicationformComponent } from '../../shared/application-form/applicationform/applicationform.component';
 
 @Component({
   selector: 'app-application',
@@ -55,6 +56,9 @@ export class ApplicationComponent {
   @Output() onDelete = new EventEmitter<any>();
   @Output() onAdd = new EventEmitter<any>();
 
+  sdwsModalService = inject(SdwdsModalService);
+  elementRef = inject(ElementRef);
+
   JobApplicationList: any[] = [];
 
   columnArray: any[] = [
@@ -72,17 +76,11 @@ export class ApplicationComponent {
 
   acceptApplication(data: any) {
     console.log('Response Data:', data);
-  const config: Partial<JobformComponent> = {
-    // payrollnumber: this.selectedPayroll,
-    // form: this.recruiterJobForm,
-    // // Pass the response data to the modal component
-    // data: responseData
-  };
-
-  const options: NgbModalOptions = { size: 'sm', centered: true, backdrop: 'static' };
-
-  //this.sdwsModalService.show((JobformComponent), config, options);
-
+    const config: Partial<ApplicationformComponent> = {
+      data: data
+    };
+    const options: NgbModalOptions = { size: '600px', centered: true, backdrop: 'static' };
+    this.sdwsModalService.show((ApplicationformComponent), config, options);
   }
 
   getNestedProperty(data: any, fieldName: string): any {
@@ -125,12 +123,10 @@ export class ApplicationComponent {
   }
 
   isSelectedRow(rowData: any): boolean {
-    console.log('test')
     return this.selectedRow === rowData;
   }
 
   selectRow(rowData: any) {
-    console.log('testing')
     this.selectedRow = rowData;
     this.isRowSelected = true;
     this.isRowNotSelected = false;

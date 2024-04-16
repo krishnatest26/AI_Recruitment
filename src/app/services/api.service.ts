@@ -52,5 +52,16 @@ export class ApiService {
     return this.http.post(url, {});
   }
 
+
+  acceptApplication(candidateId: number, jobApplicationId: number, acceptanceReason: string): Observable<any> {
+    const url = `${this.baseUrl}api/Job/AcceptJobApplication?candidateId=${candidateId}&jobApplicationId=${jobApplicationId}&acceptanceReason=${acceptanceReason}`;
+    return this.http.post(url, {});
+  }
+
+  rejectApplication(candidateId: number, jobApplicationId: number, rejectionReason: string): Observable<any> {
+    const url = `${this.baseUrl}api/Job/RejectJobApplication?candidateId=${candidateId}&jobApplicationId=${jobApplicationId}&rejectionReason=${rejectionReason}`;
+    return this.http.post(url, {});
+  }
+
 }
 export type endpointType = 'departmentList' | 'deleteDepartment' | 'controlCalendarList' | 'deleteControlCalendar' | 'baseDetailsList';
