@@ -19,13 +19,13 @@ import { DynamicFormComponent } from '../../shared/dynamic-form/dynamic-form.com
 import { JobformComponent } from '../../shared/job-form/jobform/jobform.component';
 
 @Component({
-  selector: 'app-managejob',
+  selector: 'app-application',
   standalone: true,
   imports: [NgbTableComponent, FormsModule, CommonModule, NgbPagination, NgbDropdownModule, NgbTooltip],
-  templateUrl: './managejob.component.html',
-  styleUrl: './managejob.component.scss'
+  templateUrl: './application.component.html',
+  styleUrl: './application.component.scss'
 })
-export class ManagejobComponent {
+export class ApplicationComponent {
   private _sdwdsToastService = inject(SdwdsToastService);
 
   constructor(private addService: AddService, private formService: FormService,
@@ -48,60 +48,73 @@ export class ManagejobComponent {
   collectionSize: number = 0;
   pageSizes: number[] = [5, 10, 15, 20];
 
-
   @Input() tableData: any[] = [];
-  //@Input() columnArray: any[] = [];
-  // @Input() form?: IForm;
   @Input() option?: IOptions;
 
   @Output() onEdit = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
   @Output() onAdd = new EventEmitter<any>();
 
-  sdwsModalService = inject(SdwdsModalService);
-  elementRef = inject(ElementRef);
-
-  modalRef: NgbModalRef | null = null; // Reference to the opened modal
-
-  recruiterJobList: any[] = [];
-
-  title: string = 'Confirmation';
-  body: string = 'Are you sure you want to proceed?';
-  yesLbl: string = 'Yes';
-  noLbl: string = 'No';
-
-  api = new ApiService();
-  _sdwsToastService = new SdwdsToastService();
-
-  recruiterJobForm = recruiterJobFormConfig as IForm;
+  JobApplicationList: any[] = [];
 
   columnArray: any[] = [
-    { fieldName: 'job_title', displayName: 'Job Title', dataType: 'nvarchar', length: 20, required: true },
-    { fieldName: 'job_short_description', displayName: 'Short Description', dataType: 'nvarchar', length: 20, required: true },
-    { fieldName: 'country_name', displayName: 'Country Name', dataType: 'nvarchar', length: 20, required: true },
-    { fieldName: 'department_name', displayName: 'Department Name', dataType: 'nvarchar', length: 20, required: true },
-    { fieldName: 'status', displayName: 'Status', dataType: 'nvarchar', length: 20, required: true },
+    { fieldName: 'candidate.candidate_FirstName', displayName: 'First Name', dataType: 'nvarchar', length: 20, required: false },
+    { fieldName: 'candidate.candidate_LastName', displayName: 'Last Name', dataType: 'nvarchar', length: 20, required: false },
+    { fieldName: 'role_Name', displayName: 'Job Title', dataType: 'nvarchar', length: 20, required: false },
+    { fieldName: 'department_name', displayName: 'Department', dataType: 'nvarchar', length: 20, required: false },
     { fieldName: 'actions', displayName: 'Actions', dataType: 'action', buttonLabel: 'View' }
   ];
 
-  ngOnInit(): void {
-    //this.columnArray = this.formService.buildColumnArray(departmentFormConfig);
 
-    this.getAllJobs();
+  ngOnInit(): void {
+    this.getApplications();
   }
 
-  getAllJobs(): void {
-    this.apiService.getAllJob().subscribe({
+  acceptApplication(data: any) {
+    console.log('Response Data:', data);
+  const config: Partial<JobformComponent> = {
+    // payrollnumber: this.selectedPayroll,
+    // form: this.recruiterJobForm,
+    // // Pass the response data to the modal component
+    // data: responseData
+  };
+
+  const options: NgbModalOptions = { size: 'sm', centered: true, backdrop: 'static' };
+
+  //this.sdwsModalService.show((JobformComponent), config, options);
+
+  }
+
+  getNestedProperty(data: any, fieldName: string): any {
+    if (!data || !fieldName) return '';
+
+    const fieldNames = fieldName.split('.');
+    let value = data;
+
+    for (const field of fieldNames) {
+      value = value[field];
+      if (value === undefined || value === null) break;
+    }
+
+    return value;
+  }
+
+  getApplications(): void {
+    this.apiService.getJobApplications().subscribe({
       next: (response: any) => {
-        this.recruiterJobList = response;
-        this.filteredData = response; // Set filteredData to the retrieved job list
-        console.log('recruiterJobList', this.recruiterJobList);
+        this.JobApplicationList = response;
+        this.filteredData = response;
+
+        console.log('response', response['candidate[candidate_FirstName]'])
+
+        console.log('JobApplicationList', this.JobApplicationList);
       },
       error: (error: any) => {
         this.sdwdsToastService.showError(error.message);
       }
     });
   }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tableData']) {
@@ -112,10 +125,12 @@ export class ManagejobComponent {
   }
 
   isSelectedRow(rowData: any): boolean {
+    console.log('test')
     return this.selectedRow === rowData;
   }
 
   selectRow(rowData: any) {
+    console.log('testing')
     this.selectedRow = rowData;
     this.isRowSelected = true;
     this.isRowNotSelected = false;
@@ -153,36 +168,6 @@ export class ManagejobComponent {
   }
 
 
-  openModal(rowData: any = null) {
-    console.log('Selected Row Data:', rowData);
-    const config: Partial<DynamicFormComponent> = {
-      payrollnumber: this.selectedPayroll,
-      form: this.recruiterJobForm,
-      // Pass the selected row data to the modal component
-      data: rowData
-    };
-
-    const options: NgbModalOptions = { size: this.recruiterJobForm?.modalSize, centered: true, backdrop: 'static' };
-
-    this.sdwsModalService.show((DynamicFormComponent), config, options);
-  }
-
-
-  openJobModal(rowData: any = null) {
-    console.log('Selected Row Data:', rowData);
-    const config: Partial<JobformComponent> = {
-      payrollnumber: this.selectedPayroll,
-      form: this.recruiterJobForm,
-      // Pass the selected row data to the modal component
-      data: rowData
-    };
-
-    const options: NgbModalOptions = { size: this.recruiterJobForm?.modalSize, centered: true, backdrop: 'static' };
-
-    this.sdwsModalService.show((JobformComponent), config, options);
-  }
-
 }
 
-export const FEAT_ROUTES: Routes = [{ path: '', pathMatch: 'full', component: ManagejobComponent }];
-
+export const FEAT_ROUTES: Routes = [{ path: '', pathMatch: 'full', component: ApplicationComponent }];

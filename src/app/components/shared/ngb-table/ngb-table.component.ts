@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, SimpleChanges, inject, HostListener, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgbActiveModal, NgbDropdownModule, NgbModal, NgbModalOptions, NgbPagination, NgbTooltip, NgbModalRef  } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDropdownModule, NgbModal, NgbModalOptions, NgbPagination, NgbTooltip, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SdwdsModalService } from '@sdworx/sdwds/modal';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { IForm, IOptions } from '../../../interface/form.interface';
@@ -19,7 +19,7 @@ import { DataService } from '../../../services/data.service';
 })
 export class NgbTableComponent {
 
-  constructor(private addService: AddService, private dataService: DataService) {}
+  constructor(private addService: AddService, private dataService: DataService) { }
 
   searchText: string = "";
   filteredData: any[] = [];
@@ -31,10 +31,10 @@ export class NgbTableComponent {
   isAscending: boolean = true;
   selectedPayroll: string = '344D23C4-091F-44E1-B68C-F6C0F4FF3B40';
 
-  pageSize:number = 10;
+  pageSize: number = 10;
   page: number = 1;
-  collectionSize:number = 0;
-  pageSizes:number[] = [5, 10, 15, 20];
+  collectionSize: number = 0;
+  pageSizes: number[] = [5, 10, 15, 20];
 
 
   @Input() tableData: any[] = [];
@@ -54,7 +54,7 @@ export class NgbTableComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tableData']) {
       console.log('tabledata: ', changes['tableData']);
-      this.filteredData =  this.tableData; //this.tableData.filter(item => item.payrollcompanydetailS_ID.toUpperCase() === this.selectedPayroll.toUpperCase());
+      this.filteredData = this.tableData; //this.tableData.filter(item => item.payrollcompanydetailS_ID.toUpperCase() === this.selectedPayroll.toUpperCase());
       this.collectionSize = this.filteredData.length;
     }
   }
@@ -62,41 +62,38 @@ export class NgbTableComponent {
   isSelectedRow(rowData: any): boolean {
     return this.selectedRow === rowData;
 
-}
-selectRow(rowData: any) {
-  this.selectedRow = rowData;
-  this.isRowSelected = true;
-  this.isRowNotSelected = false;
-  // console.log(rowData);
-  console.log('rowData', rowData.job_id);
-
-  this.dataService.setJobId(rowData.job_id);
-
-}
-
-ngOnInit(): void{
-   this.filteredData = this.tableData;
-
-
-   console.log('filteredData', this.filteredData)
-
-   this.addService.onAdd.subscribe((data: any) => {
-    this.onAdd.emit(data);
-    console.log('Received data from onAdd event:', data);
-  });
-
-  this.addService.onEdit.subscribe((data: any) => {
-    this.onEdit.emit(data);
-    console.log('Received data from onEdit event:', data);
-  });
-
-  this.addService.resetButton$.subscribe(() => {
-    this.clearSelectedRow();
-  });
+  }
+  selectRow(rowData: any) {
+    this.selectedRow = rowData;
+    this.isRowSelected = true;
+    this.isRowNotSelected = false;
+    this.dataService.setJobId(rowData.job_id);
 
   }
 
-  editRecord(data: any){
+  ngOnInit(): void {
+    this.filteredData = this.tableData;
+
+
+    console.log('filteredData', this.filteredData)
+
+    this.addService.onAdd.subscribe((data: any) => {
+      this.onAdd.emit(data);
+      console.log('Received data from onAdd event:', data);
+    });
+
+    this.addService.onEdit.subscribe((data: any) => {
+      this.onEdit.emit(data);
+      console.log('Received data from onEdit event:', data);
+    });
+
+    this.addService.resetButton$.subscribe(() => {
+      this.clearSelectedRow();
+    });
+
+  }
+
+  editRecord(data: any) {
     this.selectedRow = data;
     console.log("data being edited: ", data);
     this.onEdit.emit(data);
@@ -132,40 +129,40 @@ ngOnInit(): void{
     this.clearSelectedRow();
   }
 
-  searchRecords(){
+  searchRecords() {
     console.log('Search text is', this.searchText);
     const text = this.searchText.toLowerCase();
-    if (this.searchText){
+    if (this.searchText) {
       console.log("search filtered data: ", this.filteredData);
       console.log("search table data: ", this.tableData);
 
       this.filteredData = this.tableData.filter(item => item.payrollcompanydetailS_ID.toUpperCase() === this.selectedPayroll.toUpperCase());
 
-        this.filteredData = this.filteredData.filter(record => {
-            return this.columnArray.some(column => {
-                const value = record[column.fieldName].toLowerCase();
-                return value.includes(text);
-            });
+      this.filteredData = this.filteredData.filter(record => {
+        return this.columnArray.some(column => {
+          const value = record[column.fieldName].toLowerCase();
+          return value.includes(text);
         });
+      });
 
-        this.collectionSize = this.filteredData.length;
-        console.log("filtered data res: ", this.filteredData)
+      this.collectionSize = this.filteredData.length;
+      console.log("filtered data res: ", this.filteredData)
     } else {
       console.log("search filtered data: ", this.filteredData);
       console.log("search table data: ", this.tableData);
-        this.filteredData = this.tableData.filter(item => item.payrollcompanydetailS_ID.toUpperCase() === this.selectedPayroll.toUpperCase());
-        this.collectionSize = this.filteredData.length;
+      this.filteredData = this.tableData.filter(item => item.payrollcompanydetailS_ID.toUpperCase() === this.selectedPayroll.toUpperCase());
+      this.collectionSize = this.filteredData.length;
 
     }
-}
+  }
 
-private clearSelectedRow() {
-  this.selectedRow = null;
-  this.isRowSelected = false;
-  this.isRowNotSelected = true;
-}
+  private clearSelectedRow() {
+    this.selectedRow = null;
+    this.isRowSelected = false;
+    this.isRowNotSelected = true;
+  }
 
-@HostListener('document:click', ['$event'])
+  @HostListener('document:click', ['$event'])
   handleDocumentClick(event: Event) {
     // Check if the click is outside the table component and not on modal buttons
     const clickedElement = event.target as HTMLElement;
@@ -197,51 +194,51 @@ private clearSelectedRow() {
   }
 
 
-openModal(rowData: any = null) {
-  console.log('Selected Row Data:', rowData);
-  const config: Partial<DynamicFormComponent> = {
-    payrollnumber: this.selectedPayroll,
-    form: this.form,
-    // Pass the selected row data to the modal component
-    data: rowData
-  };
+  openModal(rowData: any = null) {
+    console.log('Selected Row Data:', rowData);
+    const config: Partial<DynamicFormComponent> = {
+      payrollnumber: this.selectedPayroll,
+      form: this.form,
+      // Pass the selected row data to the modal component
+      data: rowData
+    };
 
-  const options: NgbModalOptions = { size: this.form?.modalSize, centered: true, backdrop: 'static' };
+    const options: NgbModalOptions = { size: this.form?.modalSize, centered: true, backdrop: 'static' };
 
-  this.sdwsModalService.show((DynamicFormComponent), config, options);
-}
-
-sortBy(column: any) {
-  if (this.sortedColumn == column) {
-    this.isAscending = !this.isAscending;
-  }
-  else {
-    this.sortedColumn = column;
-    this.isAscending = true;
+    this.sdwsModalService.show((DynamicFormComponent), config, options);
   }
 
-  this.filteredData.sort((a, b) => {
-    const valueA = a[this.sortedColumn];
-    const valueB = b[this.sortedColumn];
-
-    if (this.isAscending) {
-      return valueA.localeCompare(valueB);
-    } else {
-      return valueB.localeCompare(valueA);
+  sortBy(column: any) {
+    if (this.sortedColumn == column) {
+      this.isAscending = !this.isAscending;
     }
-  });
-}
+    else {
+      this.sortedColumn = column;
+      this.isAscending = true;
+    }
 
-  getPageUpperLimit(){
+    this.filteredData.sort((a, b) => {
+      const valueA = a[this.sortedColumn];
+      const valueB = b[this.sortedColumn];
+
+      if (this.isAscending) {
+        return valueA.localeCompare(valueB);
+      } else {
+        return valueB.localeCompare(valueA);
+      }
+    });
+  }
+
+  getPageUpperLimit() {
     return Math.min((this.page * this.pageSize), this.collectionSize);
   }
 
-  setPageSize(newPageSize:number){
+  setPageSize(newPageSize: number) {
     this.pageSize = newPageSize;
     this.page = 1;
   }
 
-  changePayroll(){
+  changePayroll() {
     this.filteredData = this.tableData.filter(item => item.payrollcompanydetailS_ID.toUpperCase() === this.selectedPayroll.toUpperCase());
     console.log("filtered data af: ", this.filteredData);
     this.page = 1;

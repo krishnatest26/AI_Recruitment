@@ -1,0 +1,161 @@
+<div class="loading-overlay" *ngIf="loading">
+  <div class="grid-columns">
+    <div class="spinner spinner-lg shake">
+      <div class="dot-primary"></div>
+      <div class="dot-accent"></div>
+      <div class="dot-red-brand"></div>
+      <div class="dot-yellow-brand"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-header">
+  <i class="{{ 'icons8-o-add-to-clipboard' }}"></i>
+  <h5 class="modal-title">
+    Create Job
+  </h5>
+  <img [src]="img" alt="Image located at: {{ img }}" class="custom-icon" />
+  <button type="button" class="close" aria-label="Close" (click)="cancelForm($event)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<hr>
+
+
+<div class="modal-body">
+  <form [formGroup]="dynamicFormGroup" (ngSubmit)="onSubmit($event)">
+    <ng-container>
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="jobTitle" class="form-label">Job Title</label>
+            <input placeholder="Enter Job Title" type="text" class="form-control" id="jobTitle" name="jobTitle" [(ngModel)]="jobTitle" [ngModelOptions]="{standalone: true}" required>
+
+          </div>
+
+
+          <div class="form-group">
+            <label for="job_short_description" class="form-label">Job Short Description</label>
+            <input type="text" placeholder="Enter Job Description" class="form-control" id="job_short_description" name="job_short_description" [ngModelOptions]="{standalone: true}" [(ngModel)]="job_short_description" required>
+          </div>
+
+          <div class="form-group">
+            <label for="locationId" class="form-label">Location</label>
+            <select class="form-control" id="locationId" name="locationId" [(ngModel)]="locationId" [ngModelOptions]="{standalone: true}" required>
+              <option value="1" disabled selected>Please Select Location</option>
+              <option value="2">Mauritius</option>
+              <option value="3">Germany</option>
+              <option value="4">UK</option>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+
+
+
+          <div class="form-group">
+            <label for="roleId" class="form-label">Role</label>
+            <select class="form-control" id="roleId" name="roleId" [(ngModel)]="roleId" [ngModelOptions]="{standalone: true}" required>
+              <option value="1" disabled selected>Please Select Role</option>
+              <option value="2">Mauritius</option>
+              <option value="3">Germany</option>
+              <option value="4">UK</option>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-control" id="status" name="status" [(ngModel)]="status" [ngModelOptions]="{standalone: true}" required>
+              <option value="1" disabled selected>Please Select Status</option>
+              <option value="2">Active</option>
+              <option value="3">Close</option>
+              <option value="4">Filled</option>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="softSkills" class="form-label">Soft Skills</label>
+            <input type="text" placeholder="Enter Soft Skills" class="form-control" id="softSkills" name="softSkills" [(ngModel)]="softSkills" [ngModelOptions]="{standalone: true}" required>
+          </div>
+
+
+          <div class="form-group">
+            <label for="technicalSkills" class="form-label">Technical Skills</label>
+            <textarea class="form-control" placeholder="Enter Technical Skills" id="technicalSkills" name="technicalSkills" [(ngModel)]="technicalSkills" [ngModelOptions]="{standalone: true}"
+              required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="experience" class="form-label">Experience</label>
+            <textarea class="form-control" placeholder="Enter Experience" id="experience" name="experience" [(ngModel)]="experience" [ngModelOptions]="{standalone: true}"
+              required></textarea>
+          </div>
+
+
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="numberOfHires" class="form-label">Number of Hires</label>
+            <input type="number" placeholder="Enter Number of Hires" class="form-control" id="numberOfHires" name="numberOfHires" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="numberOfHires" required>
+          </div>
+
+
+
+          <div class="form-group">
+            <label for="recruitmentLeadId" class="form-label">Recruiter Name</label>
+            <input type="number" placeholder="Enter Recruiter Name" class="form-control" id="recruitmentLeadId" [ngModelOptions]="{standalone: true}" name="recruitmentLeadId"
+              [(ngModel)]="recruitmentLeadId" required>
+          </div>
+
+          <div class="form-group">
+            <label for="hayLevel" class="form-label">Hay Level</label>
+            <input type="number" placeholder="Enter Hay Level" class="form-control" id="hayLevel" name="hayLevel" [(ngModel)]="hayLevel" [ngModelOptions]="{standalone: true}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="recruitmentReason" class="form-label">Recruitment Reason</label>
+            <input type="text" placeholder="Enter Recruitment Reason" class="form-control" id="recruitmentReason" name="recruitmentReason" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="recruitmentReason" required>
+          </div>
+
+          <div class="form-group">
+            <label for="degree" class="form-label">Degree</label>
+            <input type="text" placeholder="Enter Degree" class="form-control" id="degree" name="degree" [(ngModel)]="degree" [ngModelOptions]="{standalone: true}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="certificate" class="form-label">Certificate</label>
+            <input type="text" placeholder="Enter Certificate" class="form-control" id="certificate" name="certificate" [(ngModel)]="certificate" [ngModelOptions]="{standalone: true}" required>
+          </div>
+
+
+          <div class="form-group">
+            <label for="responsibility" class="form-label">Responsibility</label>
+            <textarea class="form-control" placeholder="Enter Responsibilities" id="responsibility" name="responsibility" [(ngModel)]="responsibility" [ngModelOptions]="{standalone: true}"
+              required></textarea>
+          </div>
+
+
+
+          <!-- Add more fields here as needed -->
+        </div>
+      </div>
+
+      <!-- Add more sections here if needed -->
+
+      <div class="modal-footer">
+        @if ( form?.cancelBtnTitle != "") {
+        <button (click)="cancelForm($event)" class="btn btn-danger">{{ form?.cancelBtnTitle }}</button>
+        }
+        <button type="submit" class="btn btn-primary" [disabled]="!dynamicFormGroup.valid">Save</button>
+      </div>
+    </ng-container>
+  </form>
+</div>

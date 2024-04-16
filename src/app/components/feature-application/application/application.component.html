@@ -1,0 +1,79 @@
+<div class="card shadow">
+  <div class="card-body p-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0)">Home</a>
+      </li>
+      <li class="breadcrumb-item active">View Applications</li>
+    </ol>
+
+
+    <p>
+      <strong>Manage Job Application!</strong>
+      <br>
+      Efficiently handle job applications and make informed decisions.
+      Review candidates profiles, skills, and suitability percentages to find the best fit for your job openings.
+      Easily accept or reject applications to streamline your recruitment process. Start managing applications now.
+    </p>
+
+
+    <hr>
+    <div class="d-flex justify-content-between">
+
+
+    </div>
+
+    <div class="card my-3">
+      <div class="card-body d-flex">
+        <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+
+
+
+
+          <table class="table table-hover" id="table">
+            <thead class="thead-light">
+              <tr>
+                <ng-container *ngFor="let column of columnArray">
+                  <th (click)="sortBy(column.fieldName)" container="body">
+                    {{ column.displayName }}
+                    <span class="text-danger" *ngIf="column.required">*</span>
+                    <i class="icons8-o-collapse-arrow text-end ms-1" *ngIf="sortedColumn === column.fieldName && isAscending"></i>
+                    <i class="icons8-o-expand-arrow text-end ms-1" *ngIf="sortedColumn === column.fieldName && !isAscending"></i>
+                  </th>
+                </ng-container>
+              </tr>
+            </thead>
+            <tbody>
+              <tr (click)="selectRow(data)" [class.selected-row]="isSelectedRow(data)" *ngFor="let data of filteredData | slice: (page - 1) * pageSize : page * pageSize">
+                <ng-container *ngFor="let column of columnArray">
+                  <ng-container *ngIf="column.fieldName === 'actions'; else showData">
+                    <td>
+                      <button class="btn btn-sm btn-success"  (click)="acceptApplication(data)">Accept</button> &nbsp;&nbsp;
+                      <button  class="btn btn-sm btn-danger">Reject</button>
+                    </td>
+                  </ng-container>
+                  <ng-template #showData>
+                    <td>
+                      {{ getNestedProperty(data, column.fieldName) }}
+                    </td>
+                  </ng-template>
+                </ng-container>
+              </tr>
+              <tr *ngIf="filteredData.length === 0">
+                <td [attr.colspan]="columnArray.length" class="text-center">No data available.</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="card-footer"></div>
+  </div>
+</div>

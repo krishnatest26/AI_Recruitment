@@ -223,7 +223,6 @@ export class JobComponent {
       ResponsibilitiesList: '',
       SoftSkillsList: '',
       TechnicalSkillsList: '',
-
     };
 
     // Call registerCandidate method with candidateData and pdfFile

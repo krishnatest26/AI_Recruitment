@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { JobComponent } from './components/feature-job/job/job.component';
 import { ManagejobComponent } from './components/feature-manage-job/managejob/managejob.component';
+import { ApplicationComponent } from './components/feature-application/application/application.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -24,6 +25,10 @@ export const APP_ROUTES: Routes = [
   {
     path: 'managejob/managejob',
     component: ManagejobComponent
+  },
+  {
+    path: 'application/viewapplication',
+    component: ApplicationComponent
   }
 ];
 
