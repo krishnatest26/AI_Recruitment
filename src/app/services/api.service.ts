@@ -46,6 +46,11 @@ export class ApiService {
     return this.http.get<any[]>(url);
   }
 
+  getRejectedMatch(): Observable<any[]> {
+    const url = `${this.baseUrl}api/Recruiter/GetJobsByRejectedCandidates`;
+    return this.http.get<any[]>(url);
+  }
+
   applyForJob(candidateId: number, jobId: number): Observable<any> {
 
     const url = `${this.baseUrl}api/Job/ApplyForJob?candidateId=${candidateId}&jobId=${jobId}`;

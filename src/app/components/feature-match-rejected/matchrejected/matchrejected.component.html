@@ -1,1 +1,109 @@
 <p>matchrejected works!</p>
+
+<div class="loading-overlay" *ngIf="loading">
+  <div class="grid-columns">
+    <div class="spinner spinner-lg shake">
+      <div class="dot-primary"></div>
+      <div class="dot-accent"></div>
+      <div class="dot-red-brand"></div>
+      <div class="dot-yellow-brand"></div>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow">
+  <div class="card-body p-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0)">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Match Rejected Candidates</li>
+    </ol>
+
+    <p>
+      <strong>Manage Job Application!</strong>
+      <br>
+      Efficiently handle job applications and make informed decisions.
+      Review candidates profiles, skills, and suitability percentages to determine the best job fit for your rejected candidates. Easily identify which job openings align with the skills and qualifications of candidates who have been rejected. Streamline your recruitment process by matching candidates to suitable job opportunities.
+      Start managing rejected applications now.
+    </p>
+
+    <hr>
+
+    <div class="card my-3">
+      <div class="card-body d-flex">
+        <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+          <table class="table table-hover" id="table">
+            <thead class="thead-light">
+              <tr>
+                <ng-container *ngFor="let column of columnArray">
+                  <th (click)="sortBy(column.fieldName)">
+                    {{ column.displayName }}
+                    <span class="text-danger" *ngIf="column.required">*</span>
+                    <i class="icons8-o-collapse-arrow text-end ms-1" *ngIf="sortedColumn === column.fieldName && isAscending"></i>
+                    <i class="icons8-o-expand-arrow text-end ms-1" *ngIf="sortedColumn === column.fieldName && !isAscending"></i>
+                  </th>
+                </ng-container>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let data of transformedData">
+                <tr (click)="selectRow(data)" [class.selected-row]="isSelectedRow(data)">
+                  <td>{{ data.job.job_title }}</td>
+                  <td>{{ data.job.job_short_description }}</td>
+                  <td>{{ data.job.department_name }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="open(content)">View Match</button>
+                  </td>
+                </tr>
+              </ng-container>
+              <tr *ngIf="filteredData.length === 0">
+                <td [attr.colspan]="columnArray.length" class="text-center">No data available.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer"></div>
+  </div>
+</div>
+
+
+
+
+
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div ngbAccordion>
+      <ng-container *ngFor="let candidate of selectedRow.rejectedCandidates">
+        <div ngbAccordionItem [collapsed]="true">
+          <h2 ngbAccordionHeader>
+            <button ngbAccordionButton>
+              {{ candidate.candidateJobResume.candidate_FirstName }} {{ candidate.candidateJobResume.candidate_LastName }}
+            </button>
+          </h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <div class="mb-3">
+                <p><strong>Job Title:</strong> {{ candidate.job.job_title }}</p>
+                <p><strong>Location:</strong> {{ candidate.job.location_Name }}</p>
+                <p><strong>Department:</strong> {{ candidate.job.department_name }}</p>
+                <p><strong>Overall Percentage:</strong> {{ candidate.overallPercentage }}</p>
+                <p><strong>Overall Summary:</strong> {{ candidate.overallSummary }}</p>
+                <p><strong>Experience Score:</strong> {{ candidate.candidateJobResume.candidate_Experience_Score }}</p>
+                <p><strong>Experience Description:</strong> {{ candidate.candidateJobResume.candidate_Experience_Score_Description }}</p>
+                <!-- Add more candidate details here as needed -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+

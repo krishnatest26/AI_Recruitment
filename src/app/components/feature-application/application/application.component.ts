@@ -33,7 +33,7 @@ export class ApplicationComponent {
     private apiService: ApiService, private sdwdsToastService: SdwdsToastService,
     private http: HttpClient, private dataService: DataService) {
   }
-
+  loading: boolean = false;
   searchText: string = "";
   filteredData: any[] = [];
   selectedRow: any | null = null;
