@@ -18,6 +18,7 @@ export class AllowancesComponent {
   openJobCountByLocationData: any[] = [];
   pieChartData: any[] = [];
   numberCard: any[] = [];
+  openDeptGroupLst: any[] = [];
 
   analyticSummary: AnalyticsSummary = {
     totalApplication: 0,
@@ -36,8 +37,118 @@ export class AllowancesComponent {
 
   boxChartData: BoxChartMultiSeries;
 
+
+
+ // Dummy data for the bar chart
+ barChartData = [
+  {
+    "name": "Germany",
+    "series": [
+      {
+        "name": "2010",
+        "value": 40632,
+
+      },
+      {
+        "name": "2000",
+        "value": 36953,
+
+      },
+      {
+        "name": "1990",
+        "value": 31476,
+        "extra": {
+          "code": "de"
+        }
+      }
+    ]
+  },
+  {
+    "name": "United States",
+    "series": [
+      {
+        "name": "2010",
+        "value": 0,
+        "extra": {
+          "code": "us"
+        }
+      },
+      {
+        "name": "2000",
+        "value": 45986,
+        "extra": {
+          "code": "us"
+        }
+      },
+      {
+        "name": "1990",
+        "value": 37060,
+        "extra": {
+          "code": "us"
+        }
+      }
+    ]
+  },
+  {
+    "name": "France",
+    "series": [
+      {
+        "name": "2010",
+        "value": 36745,
+        "extra": {
+          "code": "fr"
+        }
+      },
+      {
+        "name": "2000",
+        "value": 34774,
+        "extra": {
+          "code": "fr"
+        }
+      },
+      {
+        "name": "1990",
+        "value": 29476,
+        "extra": {
+          "code": "fr"
+        }
+      }
+    ]
+  },
+  {
+    "name": "United Kingdom",
+    "series": [
+      {
+        "name": "2010",
+        "value": 36240,
+        "extra": {
+          "code": "uk"
+        }
+      },
+      {
+        "name": "2000",
+        "value": 32543,
+        "extra": {
+          "code": "uk"
+        }
+      },
+      {
+        "name": "1990",
+        "value": 26424,
+        "extra": {
+          "code": "uk"
+        }
+      }
+    ]
+  }
+];
+
+
   constructor(private http: HttpClient) {
-    this.openJobCountByLocationData = [];
+
+    this.openDeptGroupLst = [];
+    this.pieChartData = [];
+
     this.pieChartData = [];
 
     this.numberCard = [];
@@ -76,7 +187,36 @@ export class AllowancesComponent {
   ngOnInit(): void {
     this.fetchAnalyticsData();
     this.fetchAnalyticsSummary();
+    this.getOpenJobByDeptGroupedByCountry();
   }
+
+
+
+  getOpenJobByDeptGroupedByCountry(): void {
+    this.http.get<any>('https://localhost:7063/api/Analytics/GetOpenJobByDeptGroupedByCountry')
+      .subscribe(
+        (data) => {
+          this.barChartData = this.transformData(data);
+        },
+        (error) => {
+          console.error('Error fetching analytics data:', error);
+        }
+      );
+  }
+
+  transformData(data: any[]): any[] {
+    return data.map(item => ({
+      name: item.countryName,
+      series: item.analyticsData.map((analytics: any) => ({  // Explicitly type the analytics parameter
+        name: analytics.name,
+        value: analytics.value
+      }))
+    }));
+  }
+
+
+
+
 
   fetchAnalyticsData() {
     this.http.get<any>('https://localhost:7063/api/Analytics')
@@ -87,14 +227,22 @@ export class AllowancesComponent {
 
           console.log('DATA openJobCountByLocationData', data)
 
+
           this.pieChartData = [
-            { 'name': "Highest Job Application Received By Location: " + data.highestJobApplicationRecievedByLocation[0].name, 'value': data.highestJobApplicationRecievedByLocation[0].value },
-            { 'name': "Highest Rejection Rate : " + data.highestRejectionRate[0].name , 'value': data.highestRejectionRate[0].value }
+          ];
 
+          // Additional data array
+          const additionalData = [
+            { "name": "Data Analysis", "value": 2, "additionalInfo": null },
+            { "name": "Engineering", "value": 1, "additionalInfo": null },
+            { "name": "Finance", "value": 1, "additionalInfo": null },
+            { "name": "Human Resources", "value": 1, "additionalInfo": null }
+          ];
+          // Transform additional data into format expected by ngx-charts-pie-chart
+          const transformedData = additionalData.map(item => ({ 'name': item.name, 'value': item.value }));
+          // Concatenate existing pieChartData with transformed additional data
+          this.pieChartData = this.pieChartData.concat(transformedData);
 
-          ]
-
-          console.log('pieChartData', this.pieChartData)
         },
         (error) => {
           console.error('Error fetching analytics data:', error);
@@ -156,4 +304,10 @@ export interface AnalyticsSummary {
   rejectedCandidate: number;
   inProgressCandidate: number;
   avgHiringTime: number;
+}
+
+export interface AnalyticsDataItem {
+  name: string;
+  value: number;
+  additionalInfo: any; // Adjust the type if necessary
 }

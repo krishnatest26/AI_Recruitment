@@ -46,6 +46,7 @@
       <ngx-charts-pie-chart
         class="chart"
         [results]="pieChartData"
+        [legendTitle]="'Department'"
         [legend]="true"
         [legendPosition]="legendPosition"
         [labels]="true"
@@ -60,7 +61,7 @@
 
 
 <br><br>
-<div class="container">
+<!-- <div class="container">
   <ngx-charts-box-chart
     [results]="boxChartData"
     [legend]="true"
@@ -71,6 +72,23 @@
     xAxisLabel="X Axis Label"
     yAxisLabel="Y Axis Label"
   ></ngx-charts-box-chart>
+</div> -->
+
+<div class="container">
+  <ngx-charts-bar-horizontal-stacked
+    [legend]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    xAxisLabel="Number of Open Position by Department"
+    yAxisLabel="Country"
+    [results]="barChartData"
+    [view]="[1120, 300]"
+    [legendTitle]="'Country'"
+    [legend]="true"
+  ></ngx-charts-bar-horizontal-stacked>
 </div>
+
 
 <br><br><br><br>
