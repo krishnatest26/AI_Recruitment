@@ -21,13 +21,13 @@ import { ApplicationformComponent } from '../../shared/application-form/applicat
 
 
 @Component({
-  selector: 'app-matchrejected',
+  selector: 'app-matchcandidatejob',
   standalone: true,
   imports: [NgbTableComponent, NgbAccordionModule, FormsModule, CommonModule, NgbPagination, NgbDropdownModule, NgbTooltip],
-  templateUrl: './matchrejected.component.html',
-  styleUrl: './matchrejected.component.scss'
+  templateUrl: './matchcandidatejob.component.html',
+  styleUrl: './matchcandidatejob.component.scss'
 })
-export class MatchrejectedComponent {
+export class MatchcandidatejobComponent {
   private _sdwdsToastService = inject(SdwdsToastService);
 
   constructor(private addService: AddService, private formService: FormService,
@@ -78,23 +78,24 @@ export class MatchrejectedComponent {
 
 
 
+
   ngOnInit(): void {
-    this.getRejectedMatching();
+    this.getJobOpenCandidate();
   }
 
-  getRejectedMatching(): void {
+  getJobOpenCandidate(): void {
     this.loading = true;
-    this.apiService.getRejectedMatch().subscribe({
+    this.apiService.matchJobOpenCandidate().subscribe({
       next: (response: any) => {
         // Store the original data in rejectedMatchList
         this.rejectedMatchList = response;
         this.filteredData = response;
-        console.log('rejectedMatchList', this.rejectedMatchList);
+        console.log('JobOpenCandidateLst', this.rejectedMatchList);
         // Transform the data
         this.transformedData = Object.values(this.groupByJobId(this.rejectedMatchList));
 
         this.loading = false;
-        console.log('transformedData', this.transformedData);
+        console.log('transformedData Open', this.transformedData);
       },
       error: (error: any) => {
         this.loading = false;
@@ -177,6 +178,4 @@ export class MatchrejectedComponent {
 
 
 }
-
-export const FEAT_ROUTES: Routes = [{ path: '', pathMatch: 'full', component: MatchrejectedComponent }];
-
+export const FEAT_ROUTES: Routes = [{ path: '', pathMatch: 'full', component: MatchcandidatejobComponent }];

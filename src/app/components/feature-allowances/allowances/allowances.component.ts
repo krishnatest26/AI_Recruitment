@@ -83,7 +83,9 @@ export class AllowancesComponent {
       .subscribe(
         (data) => {
           // Assign the received data to your component property
-          this.openJobCountByLocationData = data.openJobCountByLocation;
+          this.openJobCountByLocationData = data.openJobByLocation;
+
+          console.log('DATA openJobCountByLocationData', data)
 
           this.pieChartData = [
             { 'name': "Highest Job Application Received By Location: " + data.highestJobApplicationRecievedByLocation[0].name, 'value': data.highestJobApplicationRecievedByLocation[0].value },
